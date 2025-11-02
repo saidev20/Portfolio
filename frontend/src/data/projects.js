@@ -8,7 +8,7 @@ const projects = [
     role: 'Architect & Developer',
     features:
       'Automates 20+ OS-level tasks via local LLMs, interprets user intent, and executes contextual operations through an intelligent system agent.',
-  github: 'https://github.com/Pavan1290/SIGMA',
+  github: 'https://github.com/saidev20/SIGMA',
     overview:
       'SIGMA OS redefines desktop computing by integrating local AI models into the operating system itself — enabling autonomous task execution, workflow automation, and context-aware assistance.',
     highlights: [
@@ -46,7 +46,7 @@ const projects = [
     role: 'Developer & Algorithm Designer',
     features:
       'Allocates 100+ classes efficiently with zero conflicts and reduces manual scheduling time by 70%.',
-  github: 'https://github.com/Pavan1290/TIMETABLE_DBMS',
+  github: 'https://github.com/saidev20/TIMETABLE_DBMS',
     overview:
       'A smart scheduling tool using evolutionary computation to optimize academic timetables. It intelligently resolves clashes and maximizes resource utilization.',
     highlights: [
@@ -84,7 +84,7 @@ const projects = [
     role: 'Data Engineer & Full-Stack Developer',
     features:
       'Integrates four transport modes — road, rail, air, and sea — to determine optimal routes using hybrid decision models.',
-  github: 'https://github.com/11Akhilesh/HTF-I04',
+  github: 'https://github.com/saidev20/HTF-I04',
     overview:
       'Developed an AI-based routing engine that dynamically adapts to traffic, weather, and delay conditions, improving efficiency and decision accuracy in logistics.',
     highlights: [

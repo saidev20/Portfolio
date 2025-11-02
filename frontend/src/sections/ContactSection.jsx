@@ -28,13 +28,13 @@ const ContactSection = () => (
           <HStack spacing={3}>
             <Icon as={FaGithub} color="brand.300" />
             <Link href="https://github.com/saidev20" isExternal>
-              github.com/saidev20
+              Github
             </Link>
           </HStack>
           <HStack spacing={3}>
             <Icon as={FaLinkedin} color="brand.300" />
             <Link href="https://linkedin.com/in/saidev-makanur-56421026a" isExternal>
-              linkedin.com/in/saidev-makanur-56421026a
+              LinkedIn
             </Link>
           </HStack>
         </Stack>

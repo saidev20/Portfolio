@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { Resend } from 'resend';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -17,6 +20,35 @@ app.use(cors({
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const visitorFilePath = path.join(__dirname, '..', 'visitorCount.json');
+
+let visitorCount = 0;
+
+const loadVisitorCount = async () => {
+  try {
+    const content = await fs.readFile(visitorFilePath, 'utf-8');
+    const data = JSON.parse(content);
+    visitorCount = Number.isFinite(data.count) ? data.count : 0;
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      console.error('Failed to read visitor count file:', error);
+    }
+    visitorCount = 0;
+  }
+};
+
+const persistVisitorCount = async () => {
+  try {
+    await fs.writeFile(visitorFilePath, JSON.stringify({ count: visitorCount }));
+  } catch (error) {
+    console.error('Failed to write visitor count file:', error);
+  }
+};
+
+await loadVisitorCount();
 
 app.get('/', (req, res) => {
   res.send('✅ Saidev Portfolio Backend is running successfully.');
@@ -67,6 +99,21 @@ app.post('/api/contact', async (req, res) => {
     console.error('Failed to send contact email:', error);
     res.status(500).json({ error: 'Unable to send message at this time.' });
   }
+});
+
+app.post('/api/visitors', async (_req, res) => {
+  try {
+    visitorCount += 1;
+    await persistVisitorCount();
+    res.json({ count: visitorCount });
+  } catch (error) {
+    console.error('Failed to increment visitor count:', error);
+    res.status(500).json({ error: 'Unable to record visit.' });
+  }
+});
+
+app.get('/api/visitors', (_req, res) => {
+  res.json({ count: visitorCount });
 });
 
 app.listen(PORT, () => {
