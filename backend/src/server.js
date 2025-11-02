@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 dotenv.config();
 
@@ -16,15 +16,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT || 587),
-  secure: process.env.SMTP_SECURE === 'true',
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.get('/', (req, res) => {
   res.send('✅ Saidev Portfolio Backend is running successfully.');
@@ -41,10 +33,17 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
 
+  const recipients = process.env.MAIL_TO?.split(',').map((address) => address.trim()).filter(Boolean);
+
+  if (!process.env.RESEND_API_KEY || !recipients || recipients.length === 0) {
+    console.error('Email configuration missing.');
+    return res.status(500).json({ error: 'Email service not configured.' });
+  }
+
   const mailOptions = {
-    from: process.env.MAIL_FROM || process.env.SMTP_USER,
-    to: process.env.MAIL_TO,
-    replyTo: email,
+    from: process.env.MAIL_FROM || 'Saidev Portfolio <onboarding@resend.dev>',
+    to: recipients,
+    reply_to: email,
     subject: `New portfolio message from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     html: `
@@ -57,7 +56,12 @@ app.post('/api/contact', async (req, res) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    const { error } = await resend.emails.send(mailOptions);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
     res.status(200).json({ success: true });
   } catch (error) {
     console.error('Failed to send contact email:', error);
