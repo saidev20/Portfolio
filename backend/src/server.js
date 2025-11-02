@@ -26,6 +26,10 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('✅ Saidev Portfolio Backend is running successfully.');
+});
+
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
