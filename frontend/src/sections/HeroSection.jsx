@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
@@ -14,8 +14,6 @@ const roles = [
 
 const HeroSection = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [visitorCount, setVisitorCount] = useState(null);
-  const hasRecordedVisit = useRef(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,35 +21,6 @@ const HeroSection = () => {
     }, 2600);
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (hasRecordedVisit.current) {
-      return;
-    }
-
-    hasRecordedVisit.current = true;
-
-    const recordVisit = async () => {
-      try {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL ? import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '') : '';
-        const response = await fetch(`${baseUrl}/api/visitors`, {
-          method: 'POST'
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to update visitor count');
-        }
-
-        const data = await response.json();
-        setVisitorCount(typeof data.count === 'number' ? data.count : null);
-      } catch (error) {
-        console.error('Unable to record visitor count:', error);
-        setVisitorCount(null);
-      }
-    };
-
-    recordVisit();
   }, []);
 
   return (
@@ -115,24 +84,6 @@ const HeroSection = () => {
             Download Resume
           </Button>
         </HStack>
-        {visitorCount !== null && (
-          <Box
-            mt={2}
-            px={4}
-            py={2}
-            borderRadius="md"
-            border="1px solid"
-            borderColor="whiteAlpha.200"
-            bg="blackAlpha.400"
-            fontSize="sm"
-            color="whiteAlpha.700"
-          >
-            👁️ Visitor Count:&nbsp;
-            <Text as="span" fontWeight="semibold" color="whiteAlpha.900">
-              {visitorCount.toLocaleString()}
-            </Text>
-          </Box>
-        )}
       </Stack>
     </MotionBox>
   );
