@@ -3,6 +3,8 @@ import { FiAward } from 'react-icons/fi';
 import Section from '../components/Section.jsx';
 
 const achievements = [
+  'KSCST Best Project of the State for 2026 Award by Government of Karnataka for SIGMA OS',
+  '1st place in Department-level and College level at TechVision 2026',
   '2nd place in Department-level Major Project Exhibition at TechVision 2025.',
   '2nd place in College-level Major Project Expo at TechVision 2025.',
   'Winner of the Mini Project Expo 2024.',

@@ -92,8 +92,9 @@ const HeroSection = () => {
           </AnimatePresence>
         </Box>
         <Text fontSize="xl" maxW="720px" color="whiteAlpha.800">
-          Computer Science student specializing in AI, machine learning, and automation. I’m currently building an intelligent automation platform that is moving through patent filing and research publication.
-        </Text>
+          Computer Science (AI & ML) undergraduate with hands-on experience in AI automation, intelligent agents, full-stack
+          development. Currently working on an innovative project in the automation domain for which a research paper is published
+          and a patent in being published in my name. Also recognized as the best project of Karnataka for the year 2026.        </Text>
         <Text fontSize="lg" maxW="640px" color="whiteAlpha.700">
           I focus on intelligent systems, data-driven innovation, and end-to-end product engineering—turning complex ideas into high-impact, real-world solutions.
         </Text>
@@ -106,7 +107,7 @@ const HeroSection = () => {
           </Button>
           <Button
             as="a"
-            href="/SaidevMakanur.pdf"
+            href="/Saidev_Resume_AI.pdf"
             download
             variant="ghost"
             size="lg"

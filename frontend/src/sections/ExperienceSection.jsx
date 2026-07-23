@@ -7,6 +7,18 @@ const MotionBox = motion(Box);
 
 const experiences = [
   {
+    company: 'MRI Real Estate Software',
+  location: 'Bengaluru, Karnataka',
+  role: 'QA Intern',
+  period: 'Jan 2026 – Jul 2026',
+    highlights: [
+      'Performed functional and API testing for enterprise-scale real estate applications to ensure application reliability.',
+      'Used API testing tools to validate data integrity, defect investigation and support end-to-end system validation.',
+      'Collaborated with developers to perform root-cause analysis, debug issues, and verify software fixes.',
+      'Contributed to Agile development cycles through test planning, regression testing, release validation, and defect tracking.',
+    ],
+  },
+  {
     company: 'Aarvath Mobitech Pvt Ltd',
   location: 'Mangaluru, Karnataka',
   role: 'Web Developer Intern',

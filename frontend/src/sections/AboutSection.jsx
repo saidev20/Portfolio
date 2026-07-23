@@ -16,7 +16,7 @@ const AboutSection = () => (
       <GridItem>
         <Stack spacing={4} fontSize="lg" color="whiteAlpha.800">
           <Text>
-            I’m <strong>Saidev</strong>, currently pursuing a B.E. in Computer Science (AIML) at Sahyadri College of Engineering &amp; Management. My academic journey (8.61 CGPA up to 6th semester) is anchored in building intelligent systems that merge AI reasoning with practical automation.
+            I’m <strong>Saidev</strong>, a Computer Science (AIML) graduate from Sahyadri College of Engineering &amp; Management. My academic journey (8.72 CGPA) is anchored in building intelligent systems that merge AI reasoning with practical automation.
           </Text>
           <Text>
             Beyond coursework, I lead the development of <strong>SIGMA OS</strong>, an AI-first operating system integrating contextual automation, multimodal agents, and OS-native intelligence. The project is progressing through patent filing while we prepare a supporting research publication.
